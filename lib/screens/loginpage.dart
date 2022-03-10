@@ -3,6 +3,8 @@
 import 'package:app3/main.dart';
 import 'package:app3/screens/signup.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:app3/screens/home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:ui';
@@ -45,31 +47,22 @@ class LoginPage extends StatelessWidget{
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/cloudsbg.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
+               gradient: LinearGradient(
+              begin: Alignment.topRight,
+               end: Alignment.bottomLeft,
+               colors: [
+               Color.fromARGB(255, 31, 29, 29),
+                Color.fromARGB(255, 19, 149, 255),
+               ],
+               ),
+             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-            //     Container(
-            //       height: 300,
-            //       decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: const AssetImage("assets/images/welcome.png"),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            //     ),
                 Text("Login Page",
                 style: TextStyle(
                   fontSize: 60,
                   fontFamily: 'LeagueGothic', 
-                  
-                  //fontFamily: 
-                  // fontFamily: 
-                     // 'Schyler'
                 ),
                 ),
                 Padding(
@@ -103,7 +96,7 @@ class LoginPage extends StatelessWidget{
         
                 RaisedButton(onPressed: (){
                   signIn();
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(context, '/home');
                 }
                 ,
                 child: Text('Submit'),
