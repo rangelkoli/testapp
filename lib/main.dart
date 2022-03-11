@@ -98,7 +98,6 @@ class HomePage extends StatelessWidget {
                ),
              ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             
             Padding(
@@ -110,18 +109,14 @@ class HomePage extends StatelessWidget {
                             
               ),
             ),
-            AnimatedImage(),
             Padding(
         padding: EdgeInsets.all(10),
-        child: TextField(
-          
-            decoration: InputDecoration(
-            fillColor: Colors.white,
-            border: OutlineInputBorder(),
-            labelText: 'User Name',
-            hintText: 'Enter Username'
-          ),
-        ),
+        child: RaisedButton(onPressed: (){
+              Navigator.pushNamed(context, '/home');
+            }
+            ,
+            child: Text('Home Page'),
+            ),
       ),
       Padding(
         padding: EdgeInsets.all(10),
@@ -150,7 +145,9 @@ class HomePage extends StatelessWidget {
             ,
             child: Text('Submit'),
             ),
-            RaisedButton(onPressed: ()=> FirebaseAuth.instance.signOut()),
+            RaisedButton(onPressed: (){
+              Navigator.pushNamed(context, '/home');
+            }),
           ],
         ),
     ),
