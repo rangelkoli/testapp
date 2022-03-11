@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
              ),
         child: Column(
           children: [
-            
+            AnimatedImage(),
             Padding(
               padding: const EdgeInsets.fromLTRB(0,50,0,0),
               child: Text("Welcome Page",
@@ -146,7 +146,7 @@ class HomePage extends StatelessWidget {
             child: Text('Submit'),
             ),
             RaisedButton(onPressed: (){
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushNamed(context, '/loginpage');
             }),
           ],
         ),

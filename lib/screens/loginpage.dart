@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget{
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData){
-              return HomePage();
+              return MainScreen();
             } 
             return Container(
             
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget{
                 Navigator.pushNamed(context, '/signup');
         
          }, 
-              child: Text("New Here? Sign Up")),
+            child: Text("New Here? Sign Up")),
         
                 RaisedButton(onPressed: (){
                   signIn();

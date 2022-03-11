@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,11 +29,23 @@ class Signup extends StatelessWidget{
   var name = '';
   var email = '';
   var password = '';
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+  @override
+  Future signupwithemail() async {
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailcontroller.text.trim(),
+        password: passwordcontroller.text.trim());
+      } on FirebaseAuthException catch (e){
+        print(e);
+      }
+ }
   @override
   Widget build(BuildContext context) {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
     return Scaffold(
                 resizeToAvoidBottomInset : false,
 
@@ -60,11 +73,7 @@ class Signup extends StatelessWidget{
               style: TextStyle(
                 fontSize: 60,
                 fontFamily: 'LeagueGothic', 
-                
-                //fontFamily: 
-                // fontFamily: 
-                   // 'Schyler'
-              ),
+                              ),
               ),
             ),
             Container(
@@ -76,25 +85,12 @@ class Signup extends StatelessWidget{
           ),
         ),
             ),
-            Padding(
-        padding: EdgeInsets.all(10),
-        child: TextField(
-            onChanged: ((value) {
-              name = value;
-            }),
-            
-            decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'User Name',
-            hintText: 'Enter username'
-          ),
-        ),
-      ),
       Padding(padding: EdgeInsets.all(10),
       child: TextField(
               onChanged: ((value) {
               email = value;
             }),
+            controller: emailcontroller,
             decoration: InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Email',
@@ -107,28 +103,24 @@ class Signup extends StatelessWidget{
            onChanged: ((value) {
               password = value;
             }),
+            controller: passwordcontroller,
             obscureText: true,
             decoration: InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Password',
             hintText: 'Enter your secure password',
-            
-            
           ),
         ),
       ),
-      
-       
-    
             RaisedButton(onPressed: (){
+              signupwithemail();
               users.add({'name': name, 'email': email, 'password': password})
               .then((value) => print('User Added'))
               .catchError((error) => print('Failed'));
-              Navigator.pushNamed(context, '/');
-            }
-            ,
-            child: Text('Submit'),
+              Navigator.pushNamed(context, '/loginpage');
+            },
             
+            child: Text('Submit'),
             )
           ],
         ),

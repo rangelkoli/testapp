@@ -114,6 +114,8 @@ class _MainScreen extends State<MainScreen>{
                  , fontFamily: 'LeagueGothic',
                  color: Colors.white),
                ),
+               RaisedButton(onPressed: () => FirebaseAuth.instance.signOut(), 
+               ),
              
            
          ],
