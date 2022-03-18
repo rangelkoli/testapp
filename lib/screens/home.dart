@@ -21,7 +21,7 @@ class MainScreen extends StatefulWidget{
 class _MainScreen extends State<MainScreen>{ 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    final user = FirebaseAuth.instance.currentUser ;
     CalendarFormat format = CalendarFormat.month;
     DateTime selectedDay = DateTime.now();
     DateTime focusedDay = DateTime.now();
@@ -108,13 +108,8 @@ class _MainScreen extends State<MainScreen>{
                    fontSize: 20,
 
                  ),),
-               Text(
-                 user.email!,
-                 style: TextStyle(fontSize: 20
-                 , fontFamily: 'LeagueGothic',
-                 color: Colors.white),
-               ),
-               RaisedButton(onPressed: () => FirebaseAuth.instance.signOut(), 
+               
+               RaisedButton(onPressed: () => FirebaseAuth.instance.signOut()
                ),
              
            

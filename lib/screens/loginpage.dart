@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget{
         
                 RaisedButton(onPressed: (){
                   signIn();
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.pushNamed(context, '/load');
                 }
                 ,
                 child: Text('Submit'),

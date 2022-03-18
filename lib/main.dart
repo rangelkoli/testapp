@@ -1,4 +1,5 @@
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:app3/screens/loginpage.dart';
 import 'package:app3/screens/signup.dart';
 import 'package:app3/screens/home.dart';
@@ -6,7 +7,6 @@ import 'package:app3/screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -16,20 +16,10 @@ void main() {
   Firebase.initializeApp();
   runApp(
     MaterialApp(
-       theme: ThemeData(
-    textTheme: TextTheme(
-      bodyText1: TextStyle(),
-      bodyText2: TextStyle(),
-      subtitle1: TextStyle(color: Colors.white), // <-- that's the one
-
-    ).apply(
-      bodyColor: Colors.white, 
-      displayColor: Colors.white, 
-    ),
-  ),
+       
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => Mainpage(),
         '/loginpage': (context) => LoginPage(),
         '/signup' : (context) => Signup(),
         '/home' :(context) => MainScreen(),
@@ -37,7 +27,7 @@ void main() {
     )
   );
 }
-
+ 
 
 class AnimatedImage extends StatefulWidget {
   const AnimatedImage({ Key? key }) : super(key: key);
@@ -74,10 +64,9 @@ class _AnimatedImageState extends State<AnimatedImage>
   }
 }
 
-class HomePage extends StatelessWidget {
-  // This widget is the root of your application.
+class Mainpage extends StatelessWidget{
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       
       resizeToAvoidBottomInset : false,
@@ -146,13 +135,13 @@ class HomePage extends StatelessWidget {
             child: Text('Submit'),
             ),
             RaisedButton(onPressed: (){
-              Navigator.pushNamed(context, '/loginpage');
+              Navigator.pushNamed(context, '/home');
             }),
           ],
         ),
     ),
     );
-  }
+   }
 }
 
 
